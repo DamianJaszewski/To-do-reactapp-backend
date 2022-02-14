@@ -19,23 +19,14 @@ app.use (bodyParser.json());
 app.use(morgan("combined"));
 
 //routy
-const recipeRoutes = require("./api/routers/recipes");
 const todoRoutes = require("./api/routers/todos");
-const userRoutes = require("./api/routers/users");
-const calendarRoutes = require("./api/routers/calendar");
 
 //statyczny katalog ze zdjeciami
 app.use("/uploads", express.static("uploads"));
 
-app.use("/przepisy", recipeRoutes);
 app.use("/zadania", todoRoutes)
-app.use("/users", userRoutes);
-app.use("/kalendarz", calendarRoutes)
 app.use((req, res, next) => {
     res.status(404).json({wiadomość: "Nie znaleziono"});
 });
 
 module.exports = app;
-
-
-//mongodb+srv://kucharz:<password>@clusternatalia.oppoh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
