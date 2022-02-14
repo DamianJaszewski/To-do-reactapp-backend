@@ -35,25 +35,28 @@ const upload = multer({
 //wyciągam ruter
 const router = express.Router();
 
-//lista wszystkich przepisów
+//lista wszystkich zadań
 router.get("/", TodosController.todos_get_schowAll
 );
 
-//dodanie nowego przepisu
+//dodanie nowego zadania
 router.post("/", TodosController.todos_post_newTodo
 );
 
-//pokazanie przepisu o podanym id
+//pokazanie zadania o podanym id
 router.get("/:day", TodosController.todos_get_by_id
 );
-// zmiana przepisu o podanym id
+
+// zmiana zadania o podanym id
 router.put("/:id", TodosController.todos_put_change
- );
-//usuniecie przepisu 
-router.delete("/:id", TodosController.todos_delete_removeTodoById 
+);
+
+//zmiana statusu zadania
+ router.put("/ukonczone/:id", TodosController.todos_put_change_done
  );
 
-//  router.delete("/:todoId", checkAuth, TodosController.todos_delete_removeTodoById 
-//  );
+//usuniecie zadania 
+router.delete("/:id", TodosController.todos_delete_removeTodoById 
+ );
 
 module.exports = router
